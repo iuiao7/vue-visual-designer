@@ -18,12 +18,19 @@ export default defineConfigWithVueTs(
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
 
-  pluginVue.configs['flat/essential'],
+  pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
   skipFormatting,
   {
     rules: {
       'vue/multi-word-component-names': 'off',
+      'vue/require-default-prop': 'off',
+      'vue/block-order': [
+        'warn',
+        {
+          order: ['template', 'script', 'style'],
+        },
+      ],
     },
   },
 )
