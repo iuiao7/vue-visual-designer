@@ -15,9 +15,9 @@
     </header>
 
     <div
-      class="h-[calc(100vh-theme(height.12))] grid place-items-center grid-cols-[300px,1fr,400px] bg-gray-100 p-4 gap-4"
+      class="h-[calc(100vh-theme(height.12))] grid place-items-center grid-cols-[300px_1fr_400px] bg-gray-100 p-4 gap-4"
     >
-      <div class="p-4 size-full bg-white rounded-lg grid grid-cols-2 gap-4">
+      <div class="p-4 size-full bg-white rounded-lg grid grid-cols-2 place-content-start gap-4">
         <Button v-for="item in componentList" :key="item.id" variant="outline">
           <component :is="item.icon" class="mr-1" /> {{ item.label }}
         </Button>
