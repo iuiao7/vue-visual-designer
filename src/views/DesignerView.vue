@@ -27,9 +27,9 @@ const properties = ref([
 </script>
 
 <template>
-  <div class="h-screen flex flex-col font-sans">
+  <div class="flex h-screen flex-col font-sans">
     <!-- 顶部工具栏 -->
-    <Toolbar class="border-b border-surface-200 dark:border-surface-700">
+    <Toolbar class="border-surface-200 dark:border-surface-700 border-b">
       <template #start>
         <div class="flex items-center gap-2">
           <Button icon="pi pi-save" label="保存" severity="success" size="small" />
@@ -45,7 +45,7 @@ const properties = ref([
 
       <template #center>
         <div class="flex items-center gap-4">
-          <span class="text-lg font-semibold text-surface-700 dark:text-surface-200">
+          <span class="text-surface-700 dark:text-surface-200 text-lg font-semibold">
             可视化设计器
           </span>
         </div>
@@ -60,14 +60,14 @@ const properties = ref([
     </Toolbar>
 
     <!-- 主体区域 -->
-    <div class="flex-1 flex">
+    <div class="flex flex-1">
       <!-- 左侧组件库 -->
       <div
-        class="w-64 bg-surface-50 dark:bg-surface-900 border-r border-surface-200 dark:border-surface-700 overflow-y-auto"
+        class="bg-surface-50 dark:bg-surface-900 border-surface-200 dark:border-surface-700 w-64 overflow-y-auto border-r"
       >
         <div class="h-full p-4">
           <div class="mb-4">
-            <h3 class="text-lg font-semibold text-surface-700 dark:text-surface-200 mb-3">
+            <h3 class="text-surface-700 dark:text-surface-200 mb-3 text-lg font-semibold">
               组件库
             </h3>
             <InputText placeholder="搜索组件..." class="w-full" v-model="searchQuery" />
@@ -77,12 +77,12 @@ const properties = ref([
             <div
               v-for="component in components"
               :key="component.id"
-              class="p-3 border border-surface-200 dark:border-surface-700 rounded-lg cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-800 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
+              class="border-surface-200 dark:border-surface-700 hover:bg-surface-100 dark:hover:bg-surface-800 cursor-pointer rounded-lg border p-3 transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg"
               draggable="true"
             >
               <div class="flex items-center gap-3">
                 <i :class="component.icon" class="text-primary-500"></i>
-                <span class="text-sm font-medium text-surface-700 dark:text-surface-200">
+                <span class="text-surface-700 dark:text-surface-200 text-sm font-medium">
                   {{ component.name }}
                 </span>
               </div>
@@ -92,9 +92,9 @@ const properties = ref([
       </div>
 
       <!-- 中间画布区域 -->
-      <div class="flex-1 bg-surface-100 dark:bg-surface-800 p-4">
+      <div class="bg-surface-100 dark:bg-surface-800 flex-1 p-4">
         <div
-          class="h-full bg-white dark:bg-surface-900 rounded-lg border-2 border-dashed border-surface-300 dark:border-surface-600 relative overflow-auto"
+          class="dark:bg-surface-900 border-surface-300 dark:border-surface-600 relative h-full overflow-auto rounded-lg border-2 border-dashed bg-white"
         >
           <!-- 画布网格背景 -->
           <div
@@ -106,11 +106,11 @@ const properties = ref([
           ></div>
 
           <!-- 画布内容区域 -->
-          <div class="relative z-10 p-8 min-h-full">
-            <div class="text-center text-surface-500 dark:text-surface-400 mt-20">
-              <i class="pi pi-plus-circle text-4xl mb-4"></i>
+          <div class="relative z-10 min-h-full p-8">
+            <div class="text-surface-500 dark:text-surface-400 mt-20 text-center">
+              <i class="pi pi-plus-circle mb-4 text-4xl"></i>
               <p class="text-lg">拖拽组件到此处开始设计</p>
-              <p class="text-sm mt-2">从左侧组件库中选择组件并拖拽到画布上</p>
+              <p class="mt-2 text-sm">从左侧组件库中选择组件并拖拽到画布上</p>
             </div>
           </div>
         </div>
@@ -118,21 +118,21 @@ const properties = ref([
 
       <!-- 右侧属性面板 -->
       <div
-        class="w-80 bg-surface-50 dark:bg-surface-900 border-l border-surface-200 dark:border-surface-700 overflow-y-auto"
+        class="bg-surface-50 dark:bg-surface-900 border-surface-200 dark:border-surface-700 w-80 overflow-y-auto border-l"
       >
         <div class="h-full p-4">
-          <div class="flex items-center gap-2 mb-4">
+          <div class="mb-4 flex items-center gap-2">
             <i class="pi pi-sliders-h text-primary-500"></i>
-            <h3 class="text-lg font-semibold text-surface-700 dark:text-surface-200">属性面板</h3>
+            <h3 class="text-surface-700 dark:text-surface-200 text-lg font-semibold">属性面板</h3>
           </div>
 
           <div
             v-if="!selectedComponent"
-            class="text-center text-surface-500 dark:text-surface-400 mt-8"
+            class="text-surface-500 dark:text-surface-400 mt-8 text-center"
           >
-            <i class="pi pi-info-circle text-2xl mb-2"></i>
+            <i class="pi pi-info-circle mb-2 text-2xl"></i>
             <p>请选择一个组件</p>
-            <p class="text-sm mt-1">点击画布中的组件来编辑属性</p>
+            <p class="mt-1 text-sm">点击画布中的组件来编辑属性</p>
           </div>
 
           <div v-else class="space-y-4">
@@ -147,7 +147,7 @@ const properties = ref([
                 <div class="space-y-3">
                   <div v-for="prop in properties" :key="prop.key">
                     <label
-                      class="block text-sm font-medium text-surface-700 dark:text-surface-200 mb-1"
+                      class="text-surface-700 dark:text-surface-200 mb-1 block text-sm font-medium"
                     >
                       {{ prop.label }}
                     </label>
@@ -161,7 +161,7 @@ const properties = ref([
                       v-else-if="prop.type === 'color'"
                       type="color"
                       v-model="prop.value"
-                      class="w-full h-8 rounded border border-surface-300 dark:border-surface-600"
+                      class="border-surface-300 dark:border-surface-600 h-8 w-full rounded border"
                     />
                   </div>
                 </div>
@@ -179,7 +179,7 @@ const properties = ref([
                 <div class="space-y-3">
                   <div>
                     <label
-                      class="block text-sm font-medium text-surface-700 dark:text-surface-200 mb-1"
+                      class="text-surface-700 dark:text-surface-200 mb-1 block text-sm font-medium"
                     >
                       边距
                     </label>
@@ -187,7 +187,7 @@ const properties = ref([
                   </div>
                   <div>
                     <label
-                      class="block text-sm font-medium text-surface-700 dark:text-surface-200 mb-1"
+                      class="text-surface-700 dark:text-surface-200 mb-1 block text-sm font-medium"
                     >
                       内边距
                     </label>
@@ -195,7 +195,7 @@ const properties = ref([
                   </div>
                   <div>
                     <label
-                      class="block text-sm font-medium text-surface-700 dark:text-surface-200 mb-1"
+                      class="text-surface-700 dark:text-surface-200 mb-1 block text-sm font-medium"
                     >
                       边框
                     </label>
