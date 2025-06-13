@@ -1,7 +1,3 @@
-<script setup lang="ts">
-// const isMenuVisible = ref(false)
-</script>
-
 <template>
   <div class="flex min-h-screen flex-col">
     <!-- <header
@@ -84,3 +80,7 @@
     </main>
   </div>
 </template>
+
+<script setup lang="ts">
+// const isMenuVisible = ref(false)
+</script>

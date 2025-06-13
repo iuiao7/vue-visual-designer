@@ -1,11 +1,3 @@
-<script setup lang="ts">
-const router = useRouter()
-
-const goToDesigner = () => {
-  router.push('/designer')
-}
-</script>
-
 <template>
   <main
     class="from-primary-50 to-surface-50 dark:from-surface-900 dark:to-surface-800 min-h-screen bg-gradient-to-br"
@@ -135,3 +127,11 @@ const goToDesigner = () => {
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+const router = useRouter()
+
+const goToDesigner = () => {
+  router.push('/designer')
+}
+</script>

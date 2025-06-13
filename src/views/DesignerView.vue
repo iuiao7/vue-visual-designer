@@ -1,31 +1,3 @@
-<script setup lang="ts">
-// 示例组件数据
-const components = ref([
-  { id: 1, name: '按钮', icon: 'pi pi-circle', type: 'Button' },
-  { id: 2, name: '输入框', icon: 'pi pi-pencil', type: 'InputText' },
-  { id: 3, name: '卡片', icon: 'pi pi-id-card', type: 'Card' },
-  { id: 4, name: '表格', icon: 'pi pi-table', type: 'DataTable' },
-  { id: 5, name: '图片', icon: 'pi pi-image', type: 'Image' },
-  { id: 6, name: '文本', icon: 'pi pi-align-left', type: 'Text' },
-])
-
-// 搜索查询
-const searchQuery = ref('')
-
-// 示例属性数据 - 默认显示一个示例组件
-const selectedComponent = ref({
-  id: 'demo',
-  name: '示例按钮',
-  type: 'Button',
-})
-const properties = ref([
-  { label: '宽度', key: 'width', value: '100px', type: 'text' },
-  { label: '高度', key: 'height', value: '40px', type: 'text' },
-  { label: '背景色', key: 'backgroundColor', value: '#ffffff', type: 'color' },
-  { label: '文字颜色', key: 'color', value: '#000000', type: 'color' },
-])
-</script>
-
 <template>
   <div class="flex h-screen flex-col font-sans">
     <!-- 顶部工具栏 -->
@@ -210,3 +182,31 @@ const properties = ref([
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+// 示例组件数据
+const components = ref([
+  { id: 1, name: '按钮', icon: 'pi pi-circle', type: 'Button' },
+  { id: 2, name: '输入框', icon: 'pi pi-pencil', type: 'InputText' },
+  { id: 3, name: '卡片', icon: 'pi pi-id-card', type: 'Card' },
+  { id: 4, name: '表格', icon: 'pi pi-table', type: 'DataTable' },
+  { id: 5, name: '图片', icon: 'pi pi-image', type: 'Image' },
+  { id: 6, name: '文本', icon: 'pi pi-align-left', type: 'Text' },
+])
+
+// 搜索查询
+const searchQuery = ref('')
+
+// 示例属性数据 - 默认显示一个示例组件
+const selectedComponent = ref({
+  id: 'demo',
+  name: '示例按钮',
+  type: 'Button',
+})
+const properties = ref([
+  { label: '宽度', key: 'width', value: '100px', type: 'text' },
+  { label: '高度', key: 'height', value: '40px', type: 'text' },
+  { label: '背景色', key: 'backgroundColor', value: '#ffffff', type: 'color' },
+  { label: '文字颜色', key: 'color', value: '#000000', type: 'color' },
+])
+</script>
