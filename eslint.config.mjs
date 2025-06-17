@@ -1,27 +1,44 @@
 // @ts-check
-import withNuxt from "./.nuxt/eslint.config.mjs";
+import antfu from '@antfu/eslint-config'
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default withNuxt({
-  files: ["**/*.vue"],
+export default withNuxt(antfu({
+  typescript: true,
+  vue: true,
+  formatters: true,
+}), {
+  files: ['**/*.vue'],
   rules: {
-    "vue/multi-word-component-names": "off",
-    "vue/block-order": [
-      "error",
+    'vue/block-order': [
+      'error',
       {
-        order: ["template", "script", "style"],
+        order: ['template', 'script', 'style'],
       },
     ],
-    "vue/html-self-closing": [
-      "error",
+    'vue/html-self-closing': [
+      'warn',
       {
         html: {
-          void: "always",
-          normal: "never",
-          component: "always",
+          void: 'always',
+          normal: 'never',
+          component: 'always',
         },
-        svg: "never",
-        math: "never",
+        svg: 'never',
+        math: 'never',
       },
     ],
   },
-});
+}, {
+  plugins: {
+    'better-tailwindcss': eslintPluginBetterTailwindcss,
+  },
+  rules: {
+    ...eslintPluginBetterTailwindcss.configs['recommended-warn'].rules,
+  },
+  settings: {
+    'better-tailwindcss': {
+      entryPoint: 'assets/css/main.css',
+    },
+  },
+})
