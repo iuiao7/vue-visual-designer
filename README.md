@@ -1,75 +1,72 @@
-# Nuxt Minimal Starter
+# Nuxt 3 Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+一个现代化的 Nuxt 3 项目模板，集成了 Pinia 状态管理、TailwindCSS 样式框架和 TypeScript 支持。
 
-## Setup
+## 技术栈
 
-Make sure to install dependencies:
+- **Nuxt 3** - Vue.js 全栈框架
+- **Pinia** - Vue 状态管理
+- **TailwindCSS v4** - 原子化 CSS 框架
+- **TypeScript** - 类型安全
+- **ESLint** - 代码规范检查
+
+查看 [Nuxt 文档](https://nuxt.com/docs/getting-started/introduction) 了解更多信息。
+
+## 环境要求
+
+- Node.js 18+
+- pnpm (推荐) / npm / yarn / bun
+
+## 安装依赖
 
 ```bash
-# npm
-npm install
-
-# pnpm
+# 推荐使用 pnpm
 pnpm install
 
-# yarn
+# 或使用其他包管理器
+npm install
 yarn install
-
-# bun
 bun install
 ```
 
-## Development Server
+## 开发服务器
 
-Start the development server on `http://localhost:3000`:
+启动开发服务器，访问 `http://localhost:9876`：
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
+# 推荐使用 pnpm
 pnpm dev
 
-# yarn
+# 或使用其他包管理器
+npm run dev
 yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+## 代码规范
 
-Build the application for production:
+项目集成了 ESLint 进行代码规范检查：
 
 ```bash
-# npm
-npm run build
+# 检查代码规范
+pnpm lint
 
-# pnpm
+# 自动修复代码格式
+pnpm lint:fix
+```
+
+## 生产构建
+
+构建生产版本：
+
+```bash
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+本地预览生产构建：
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+查看 [部署文档](https://nuxt.com/docs/getting-started/deployment) 了解更多部署信息。
