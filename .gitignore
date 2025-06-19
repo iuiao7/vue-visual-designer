@@ -24,4 +24,5 @@ logs
 !.env.example
 
 # Augment code
-/issues
+.issues
+.augment-guidelines
