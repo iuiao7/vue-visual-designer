@@ -112,6 +112,7 @@
 <script setup lang="ts">
 import type { BaseComponent } from '~/types/designer'
 import { computed, ref } from 'vue'
+import CanvasComponent from '~/components/designer/CanvasComponent.vue'
 import { useCanvasStore } from '~/stores/canvas'
 import { useHistoryStore } from '~/stores/history'
 

@@ -14,8 +14,26 @@
   >
     <!-- 组件内容 -->
     <div class="component-content h-full w-full" :style="contentStyle">
+      <!-- 加载状态 -->
+      <div
+        v-if="isComponentLoading"
+        class="flex h-full w-full items-center justify-center bg-gray-100"
+      >
+        <div class="text-center">
+          <div
+            class="
+              mx-auto mb-2 h-4 w-4 animate-spin rounded-full border-b-2
+              border-blue-500
+            "
+          ></div>
+          <span class="text-xs text-gray-500">加载中...</span>
+        </div>
+      </div>
+
+      <!-- 动态组件 -->
       <component
         :is="componentType"
+        v-else
         v-bind="component.props"
         :style="component.style"
         @update="handleContentUpdate"
@@ -71,7 +89,8 @@
 
 <script setup lang="ts">
 import type { BaseComponent, ResizeHandle } from '~/types/designer'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { getCachedComponent, getComponent } from '~/composables/useComponentRegistry'
 
 interface Props {
   component: BaseComponent
@@ -90,6 +109,10 @@ const emit = defineEmits<Emits>()
 
 // DOM 引用
 const componentElement = ref<HTMLElement>()
+
+// 动态组件状态
+const dynamicComponent = ref<any>(null)
+const isComponentLoading = ref(false)
 
 // 拖拽状态
 const isDragging = ref(false)
@@ -139,14 +162,19 @@ const contentStyle = computed(() => ({
 }))
 
 const componentType = computed(() => {
-  const typeMap: Record<string, string> = {
-    text: 'TextComponent',
-    image: 'ImageComponent',
-    container: 'ContainerComponent',
-    button: 'ButtonComponent',
-    input: 'InputComponent',
+  // 优先使用动态加载的组件
+  if (dynamicComponent.value) {
+    return dynamicComponent.value
   }
-  return typeMap[props.component.type] || 'div'
+
+  // 尝试从缓存中获取组件
+  const cachedComponent = getCachedComponent(props.component.type)
+  if (cachedComponent) {
+    return cachedComponent
+  }
+
+  // 如果没有缓存，返回div作为占位符
+  return 'div'
 })
 
 // 缩放控制点
@@ -388,6 +416,32 @@ function handleKeyDown(event: KeyboardEvent) {
       break
   }
 }
+
+// 加载动态组件
+async function loadComponent() {
+  if (isComponentLoading.value)
+    return
+
+  isComponentLoading.value = true
+  try {
+    const component = await getComponent(props.component.type)
+    if (component) {
+      dynamicComponent.value = component
+    }
+  }
+  catch (error) {
+    console.error(`Failed to load component: ${props.component.type}`, error)
+  }
+  finally {
+    isComponentLoading.value = false
+  }
+}
+
+// 监听组件类型变化，重新加载组件
+watch(() => props.component.type, () => {
+  dynamicComponent.value = null
+  loadComponent()
+}, { immediate: true })
 
 // 组件挂载时添加键盘监听
 onMounted(() => {

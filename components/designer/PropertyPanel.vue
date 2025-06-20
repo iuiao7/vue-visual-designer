@@ -165,14 +165,14 @@
               <div class="grid grid-cols-2 gap-2">
                 <div>
                   <label class="mb-1 block text-xs font-medium text-gray-700">可见</label>
-                  <UToggle
+                  <USwitch
                     v-model="selectedComponent.visible"
                     @change="updateComponent({ visible: selectedComponent.visible })"
                   />
                 </div>
                 <div>
                   <label class="mb-1 block text-xs font-medium text-gray-700">锁定</label>
-                  <UToggle
+                  <USwitch
                     v-model="selectedComponent.locked"
                     @change="updateComponent({ locked: selectedComponent.locked })"
                   />
@@ -238,7 +238,7 @@
 
               <div>
                 <label class="mb-1 block text-xs font-medium text-gray-700">透明度</label>
-                <URange
+                <USlider
                   v-model="selectedComponent.opacity"
                   :min="0"
                   :max="1"
@@ -385,6 +385,7 @@
 <script setup lang="ts">
 import type { BaseComponent } from '~/types/designer'
 import { computed, ref } from 'vue'
+import PropertySection from '~/components/designer/PropertySection.vue'
 import { useCanvasStore } from '~/stores/canvas'
 import { useHistoryStore } from '~/stores/history'
 

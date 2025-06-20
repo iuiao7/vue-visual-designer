@@ -27,7 +27,7 @@
         />
       </div>
 
-      <UDivider orientation="vertical" class="h-6" />
+      <USeparator orientation="vertical" class="h-6" />
 
       <!-- 导入导出 -->
       <div class="flex items-center space-x-1">
@@ -51,7 +51,7 @@
         </UButton>
       </div>
 
-      <UDivider orientation="vertical" class="h-6" />
+      <USeparator orientation="vertical" class="h-6" />
 
       <!-- 预览和保存 -->
       <div class="flex items-center space-x-1">
@@ -138,7 +138,7 @@
         </UButton>
       </div>
 
-      <UDivider orientation="vertical" class="h-6" />
+      <USeparator orientation="vertical" class="h-6" />
 
       <!-- 视图选项 -->
       <div class="flex items-center space-x-1">
@@ -158,7 +158,7 @@
         />
       </div>
 
-      <UDivider orientation="vertical" class="h-6" />
+      <USeparator orientation="vertical" class="h-6" />
 
       <!-- 帮助 -->
       <UButton
